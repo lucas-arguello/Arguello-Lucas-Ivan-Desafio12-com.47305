@@ -20,7 +20,7 @@ router.post("/", jwtAuth, authorization(['admin','premium']), ProductsController
 router.put("/:pid", jwtAuth, authorization(['admin']), ProductsController.updateProduct);
 
 //Usamos el metodo DELETE para crear una ruta que nos permita eliminar un producto.
-router.delete("/:pid", jwtAuth, authorization(['admin']), ProductsController.deleteProduct);
+router.delete("/:pid", jwtAuth, authorization(['admin', 'premium']), ProductsController.deleteProduct);
 
 
 

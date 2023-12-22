@@ -23,7 +23,7 @@ import { viewsRouter } from "./routes/views.routes.js";//importamos las rutas de
 import { productsRouter } from "./routes/products.routes.js";// importamos la ruta "products"
 import { cartsRouter } from "./routes/carts.routes.js";// importamos la ruta "carts"
 import { usersSessionsRouter } from "./routes/usersSessions.routes.js";//importamos la ruta de "users"
-
+import { usersRouter } from "./routes/users.routes.js";
 
 const port = config.server.port; //configuro puerto.
 
@@ -59,6 +59,7 @@ app.use(viewsRouter); //contiene rutas de tipo GET, porque son las que van a uti
 app.use("/api/products",productsRouter);
 app.use("/api/carts",cartsRouter);
 app.use("/api/sessions", usersSessionsRouter);
+app.use("/api/users", usersRouter);
 
 //
 

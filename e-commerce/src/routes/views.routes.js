@@ -7,36 +7,36 @@ const router = Router();
 
 
 //ruta para la vista home de todos los productos
-router.get('/', jwtAuth, authorization(["Usuario", "admin"]), ViewsController.renderViewsHome);
+router.get('/', jwtAuth, authorization(["Usuario", "admin", "premium"]), ViewsController.renderViewsHome);
 
 //ruta para login
-router.get('/login', authorization(["Usuario", "admin"]), ViewsController.renderViewsLogin);
+router.get('/login', authorization(["Usuario", "admin", "premium"]), ViewsController.renderViewsLogin);
 
 //ruta para register local
 router.get('/register', ViewsController.renderViewsRegister);
 
 //ruta para el perfil de usuario
-router.get('/profile', jwtAuth, authorization(["Usuario", "admin"]), ViewsController.renderViewsProfile);
+router.get('/profile', jwtAuth, authorization(["Usuario", "admin", "premium"]), ViewsController.renderViewsProfile);
 
 
 //ruta para ver los productos en tiempo real y eliminar productos. 
-router.get("/realtimeproducts", jwtAuth, authorization(['admin']), ViewsController.renderViewsRealTime);
+router.get("/realtimeproducts", jwtAuth, authorization(['admin', "premium"]), ViewsController.renderViewsRealTime);
 
 //ruta que esta vinculada al servidor de "websocket"
-router.get("/chats", jwtAuth, authorization(["Usuario", "admin"]), ViewsController.renderViewsMessage);
+router.get("/chats", jwtAuth, authorization(["Usuario", "admin", "premium"]), ViewsController.renderViewsMessage);
 
 //pagiante// localhost:8080?page=1 ... 2 ...3 ..etc
-router.get('/products', jwtAuth, authorization(["Usuario", "admin"]), ViewsController.renderViewsProducts);
+router.get('/products', jwtAuth, authorization(["Usuario", "admin", "premium"]), ViewsController.renderViewsProducts);
 
 //ruta hardcodeada localhost:8080/cart/652832e702a5657f7db4c22e
-router.get('/cart/:cid', authorization(["Usuario", "admin"]), ViewsController.renderViewsCart);
+router.get('/cart/:cid', authorization(["Usuario", "admin", "premium"]), ViewsController.renderViewsCart);
 
 //restablecer password
 router.get('/forgot-password', (req, res) => {
     res.render('forgotPassView')
   })
   
-  router.get('/reset-password', (req, res) => {
+router.get('/reset-password', (req, res) => {
     const token = req.query.token
     console.log('token', token)
     res.render('resetPassView', { token } )

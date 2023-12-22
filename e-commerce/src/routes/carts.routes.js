@@ -24,7 +24,7 @@ router.put("/:cid", CartsController.updateCartId);
 
 //Usamos el metodo PUT para crear una ruta que nos permita buscar un carrito y agregar productos en el carrito.-- solo agrega prod
 //http://localhost:8080/api/carts/:cid/product/:pid
-router.put("/:cid/product/:pid", jwtAuth, authorization(['Usuario']), CartsController.addProduct); 
+router.put("/:cid/product/:pid", jwtAuth, authorization(['Usuario', 'admin']), CartsController.addProduct); 
       
 //Usamos el metodo PUT para que actualice el produto del carrito por su ID.-- solo actualizamos la cantidad.
 //http://localhost:8080/api/carts/:cid/products/:pid
@@ -37,7 +37,7 @@ router.delete("/:cid", CartsController.deleteCartId);
 
 //Usamos el metodo DELETE para eliminar un producto específico de un carrito por su ID de carrito y producto
 //http://localhost:8080/api/carts/:cid/products/:pid
-router.delete("/:cid/products/:pid", CartsController.deleteProductInCart);
+router.delete("/:cid/products/:pid", authorization(['Usuario']), CartsController.deleteProductInCart);
 
 //------------------- Ruta para crear un tiket
 router.post('/:cid/purchase',jwtAuth, authorization(['Usuario']), CartsController.purchaseCart)
